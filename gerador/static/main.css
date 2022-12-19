@@ -1,0 +1,80 @@
+.post-edit-primary{
+  background-color: #f2f5f8;
+  box-shadow: 4px 4px 8px rgba(128, 128, 128, 0.425);
+  transition: 150ms linear; 
+}
+
+.post-edit-primary:hover{
+  background-color: #f2f5f880;
+  transform: scale(1.01);
+}
+
+
+
+
+
+.tamanho-formulario{ 
+  width: 100%;
+  max-width: 1200px;
+  min-width: 600px;
+  margin: 0 auto;  
+}
+
+
+.container-edit-primary{
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px rgba(128, 128, 128, 0.425);
+  transition: 250ms linear; 
+}
+
+.container-edit-primary:hover{
+  background-color: white;
+  transform: scale(1.05);
+}
+
+
+.b-example-divider    {
+    height: 1rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);}
+
+.card{
+  width: 400px;
+  border: none;
+  border-radius: 10px;
+   
+  background-color: #fff;
+}
+
+
+
+.stats{
+
+      background: #f2f5f8 !important;
+
+    color: #000 !important;
+}
+.articles{
+  font-size:10px;
+  color: #a1aab9;
+}
+.number1{
+  font-weight:500;
+}
+.followers{
+    font-size:10px;
+  color: #a1aab9;
+
+}
+.number2{
+  font-weight:500;
+}
+.rating{
+    font-size:10px;
+  color: #a1aab9;
+}
+.number3{
+  font-weight:500;
+}

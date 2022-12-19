@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+  <h1 class="pt-4 pb-3">Adicionando Logo</h1>
+  <img src="{{ url_for('static', filename=filename) }}" alt="">
+</div>
+
+{% endblock %} {% block title %} Adicionar Logo | Gerador de Etiquetas{% endblock %}

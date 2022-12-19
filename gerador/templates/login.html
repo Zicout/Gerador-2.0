@@ -1,0 +1,128 @@
+{% extends "base.html" %} {% block title %} Login | Registre-se {% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 class="pt-4 pb-3">Faça Login ou Crie sua Conta para continuar</h1>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <form method="POST" action="" class="border p-5 mt-3 container-edit-primary">
+        {{ formLogin.csrf_token }}
+        <legend>Login</legend>
+        <fieldset>
+          <div class="form-group ">
+            {{ formLogin.email.label(class="form-control-label") }} 
+
+            {% if formLogin.email.errors %}
+
+                {{ formLogin.email(class="form-control is-invalid")}}
+
+                <div class="invalid-feedback">
+                    {% for erro in formLogin.email.errors %}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                {{ formLogin.email(class="form-control")}}
+            {% endif %}
+
+            
+            
+          </div>
+          <div class="form-group">
+            {{ formLogin.password.label(class="form-control-label") }} 
+
+            {% if formLogin.password.errors %}
+
+                {{ formLogin.password(class="form-control is-invalid")}}
+
+                <div class="invalid-feedback">
+                    {% for erro in formLogin.password.errors %}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                {{ formLogin.password(class="form-control")}}
+            {% endif %}
+
+          </div>
+          <div class="form-check form-switch pt-2">
+            {{ formLogin.lembrarSenha.label(class="form-check-label") }} {{ formLogin.lembrarSenha(class="form-check-input", id="flexSwitchCheckDefault") }}
+          </div>
+        </fieldset>
+        {{formLogin.submitLogin(class="btn btn-primary mt-2") }}
+      </form>
+    </div>
+    <div class="col">
+      <form method="POST" action="" class="border p-5 mt-3 container-edit-primary"> 
+        {{ formCriarConta.csrf_token }}
+        <legend>Criar Conta</legend>
+        <fieldset>
+          <div class="form-group">
+            {{ formCriarConta.username.label(class="form-control-label") }}             
+            
+            {{ formCriarConta.username(class="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ formCriarConta.email.label(class="form-control-label") }} 
+            
+            {% if formCriarConta.email.errors %}
+
+                {{ formCriarConta.email(class="form-control is-invalid")}}
+
+                <div class="invalid-feedback">
+                    {% for erro in formCriarConta.email.errors %}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                {{ formCriarConta.email(class="form-control")}}
+            {% endif %}
+
+          </div>
+          <div class="form-group">
+            {{ formCriarConta.password.label(class="form-control-label") }} 
+
+            {% if formCriarConta.password.errors %}
+
+                {{ formCriarConta.password(class="form-control is-invalid")}}
+
+                <div class="invalid-feedback">
+                    {% for erro in formCriarConta.password.errors %}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                {{ formCriarConta.password(class="form-control")}}
+            {% endif %}
+
+          </div>
+          <div class="form-group">
+            {{ formCriarConta.passwordConfirm.label(class="form-control-label") }} 
+
+            {% if formCriarConta.passwordConfirm.errors %}
+
+                {{ formCriarConta.passwordConfirm(class="form-control is-invalid")}}
+
+                <div class="invalid-feedback">
+                    {% for erro in formCriarConta.passwordConfirm.errors %}
+                        {{ erro }}
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                {{ formCriarConta.passwordConfirm(class="form-control")}}
+            {% endif %}
+
+          </div>
+        </fieldset>
+        {{ formCriarConta.submitCriarConta(class="btn btn-primary mt-2") }}
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

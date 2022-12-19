@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block body %}
+<div class="container mt-3">
+  <h1 class="pt-4 pb-3" style="color: darkorange;">Feed de Posts</h1>
+  <h2>Veja o que os usuários de nossas ferramentas publicaram nos últimos dias</h2>
+  <hr>
+  {% for post in posts %}
+
+    <div class="row border rounded mt-4 p-3 post-edit-primary">
+      <div class="col col-3">
+        <div class="image pe-2" style="text-align: center;">
+          <img src="{{ url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}" width="200" height="200" class="rounded-circle">
+          <br>
+          <div style="text-align: center;">
+          Usuário:
+          <strong>{{ post.autor.username }}</strong>
+          </div>
+          <div class="row justify-content-center">
+              {% for curso in post.autor.ferramentas.split(";") %}
+          
+                <button type="button" class="btn btn-dark mt-2" disabled>{{ curso }}</button>
+          
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="col col-9">
+        <h3>{{ post.titulo }}<small class="text-muted" style="font-size: 15px;"> - Data de Criação: {{ post.data_criacao.strftime('%H:%M %d/%m/%Y') }} <hr></small></h3>
+        <p>{{ post.corpo }} <br>
+          {% if post.autor == current_user %}
+            <button type="button" style="width: 15%;" class="btn btn-outline-primary mt-5"><a href="{{ url_for('editar_post', post_id=post.id) }}" class="nav-link">Editar Post</a></button>
+            <button type="button" style="width: 10%;" class="btn btn-dark mt-5"><a href="{{ url_for('exibir_post', post_id=post.id) }}" class="nav-link">Ver Post</a></button>      
+          {% else %}
+          <button type="button" style="width: 10%;" class="btn btn-dark mt-5"><a href="{{ url_for('exibir_post', post_id=post.id) }}" class="nav-link">Ver Post</a></button>
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  {% endfor %}
+
+{% endblock %} 
+
+{% block title %}
+
+Início | Gerador de Etiquetas
+
+{% endblock %}

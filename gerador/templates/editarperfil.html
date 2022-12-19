@@ -1,0 +1,95 @@
+{% extends "perfil.html" %}
+
+{% block title %}
+Editar Perfil | Gerador
+{% endblock %}
+
+{% block form_editar_perfil %}
+
+<div class="container">
+    <div class="row" style="width: 60%; margin: auto;" >
+      <div class="col">
+        <form method="POST" action="" class="border p-5 mt-3 container-edit-primary" enctype="multipart/form-data">
+          {{ form.csrf_token }}
+          <legend>Editar Perfil</legend>
+          <fieldset>
+            <div class="form-group">
+
+                {{ form.username.label(class="form-control-label") }} 
+    
+                {% if form.username.errors %}
+    
+                    {{ form.username(class="form-control is-invalid")}}
+    
+                    <div class="invalid-feedback">
+                        {% for erro in form.username.errors %}
+                            {{ erro }}
+                        {% endfor %}
+                    </div>
+    
+                {% else %}
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    {{ form.username(class="form-control")}}
+                </div>
+                {% endif %}
+    
+                
+                
+                </div>
+                <div class="form-group mt-2">
+                    {{ form.email.label(class="form-control-label") }} 
+        
+                    {% if form.email.errors %}
+        
+                        {{ form.email(class="form-control is-invalid")}}
+        
+                        <div class="invalid-feedback">
+                            {% for erro in form.email.errors %}
+                                {{ erro }}
+                            {% endfor %}
+                        </div>
+        
+                    {% else %}
+                        <div class="input-group mb-3">
+                            {{ form.email(class="form-control")}}
+                            <span class="input-group-text" id="basic-addon2">{{ email_campo }}</span>                    
+                            
+                        </div>
+                    {% endif %}
+                </div>                
+                <div class="form-group mt-2">
+                    {{ form.foto_perfil.label }}
+                    <div class="input-group mb-3">                        
+                        {{ form.foto_perfil(class="form-control") }}
+                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                    </div>
+
+                    {% if form.foto_perfil.errors %}
+
+                        {% for erro in form.foto_perfil.errors %}
+                            <span class="text-danger">{{ erro }}</span><br>
+                        {% endfor %}
+
+                    {% endif %}
+                </div>
+                <hr class="mt-4 mb-2">
+                <legend class="mt-2">Ferramentas que eu uso</legend>
+                <div class="form-check form-switch pt-2">
+                    {{ form.ferramenta_gerador_etiqueta.label(class="form-check-label") }} 
+                    {{ form.ferramenta_gerador_etiqueta(class="form-check-input", id="flexSwitchCheckDefault") }}
+                </div>
+                <div class="form-check form-switch pt-2">
+                    {{ form.ferramenta_adiciona_logo.label(class="form-check-label") }} 
+                    {{ form.ferramenta_adiciona_logo(class="form-check-input", id="flexSwitchCheckDefault") }}
+                </div>
+          </fieldset>
+          <div>
+          {{form.submit_editar_perfil(class="btn btn-primary mt-2") }}</div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

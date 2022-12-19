@@ -1,0 +1,69 @@
+{% extends "base.html" %} 
+
+{% block body %}
+    <div class="container mt-3">
+    <h1 class="pt-4 pb-3" style="color: darkorange;">Esse post de {{ post.autor.username }} é o {{ post.autor.id }}º post do site</h1>
+    <h2>Você está vendo o post de {{ post.autor.username }}</h2>
+    <hr>
+        <div class="row border rounded mt-4 p-3 post-edit-primary">
+        <div class="col col-3">
+            <div class="image pe-2" style="text-align: center;">
+            <img src="{{ url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}" width="200" height="200" class="rounded-circle">
+            <br>
+            <div style="text-align: center;">
+            Usuário:
+            <strong>{{ post.autor.username }}</strong>
+            </div>
+            <div class="row justify-content-center">
+                {% for curso in post.autor.ferramentas.split(";") %}
+            
+                    <button type="button" class="btn btn-dark mt-2" disabled>{{ curso }}</button>
+            
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+        <div class="col col-9">
+
+            <h3>{{ post.titulo }} 
+                <small class="text-muted" style="font-size: 15px;"> - Data de Criação: {{ post.data_criacao.strftime('%H:%M %d/%m/%Y') }} <hr>
+                </small></h3> 
+            <p>{{ post.corpo }}</p>
+            <br>
+            {% if post.autor == current_user %}
+                <button type="button" style="width: 15%;" class="btn btn-outline-primary mt-5"><a href="{{ url_for('editar_post', post_id=post.id) }}" class="nav-link">Editar Post</a></button>
+                {% block botao_sair %}
+                {% endblock %}
+                <button type="button" style="width: 15%;" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger mt-5"><a href="#" class="nav-link">Excluir Post</a></button>                
+            {% endif %}
+        </div>
+        </div>
+    </div>
+
+    
+{% block form_editar_post %} 
+{% endblock %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Excluir Post</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            Deseja quer realmente excluir esse Post? 
+            
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <form method="POST" action="{{ url_for('excluir_post', post_id=post.id) }}">
+                <button type="submit" class="btn btn-danger">Excluir Post</button>
+            </form>
+            
+            </div>
+        </div>
+        </div>
+      </div>
+{% endblock %}

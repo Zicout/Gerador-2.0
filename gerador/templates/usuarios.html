@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block title %} Usuários {% endblock %} {% block
+body %}
+<div class="container">
+  <h1 class="pt-4 pb-3">Usuários</h1>
+  {% for user in users %}
+  <div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-3">
+      <div class="d-flex align-items-center">
+        <div class="image pe-2">
+          <img
+            src="{{ url_for('static', filename='fotos_perfil/{}'.format(user.foto_perfil)) }}"
+            width="200"
+            height="200"
+            class="rounded-circle"
+          />
+        </div>
+
+        <div class="ml-3 w-100">
+          <h4 class="mb-0 mt-0">{{ user.username }}</h4>
+          <span>{{ user.email }}</span>
+
+          {% if "Não Informado" in user.ferramentas %}
+          <div
+            class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats"
+          >
+            <div class="d-flex flex-column">
+              <span class="articles">Ferramentas</span
+              ><span class="number1">0</span>
+            </div>
+            {% elif user.ferramentas.count("a") == 0 %}
+            <div
+              class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats"
+            >
+              <div class="d-flex flex-column">
+                <span class="articles">Ferramentas</span
+                ><span class="number1">0</span>
+              </div>
+              {% else %}
+              <div
+                class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats"
+              >
+                <div class="d-flex flex-column">
+                  <span class="articles">Ferramentas</span
+                  ><span class="number1"
+                    >{{ user.ferramentas.count(";") + 1 }}</span
+                  >
+                </div>
+                {% endif %}
+                <div class="d-flex flex-column">
+                  <span class="rating">Posts</span>
+                  <span class="number3">{{ user.contar_posts() }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col col-4" style="text-align: center">
+          <strong>Ferramentas Utilizadas</strong><br />
+          {% for curso in user.ferramentas.split(";") %}
+
+          <button type="button" class="btn btn-dark mt-2" disabled>
+            {{ curso }}
+          </button>
+
+          {% endfor %}
+        </div>
+      </div>
+      <hr />
+      {% endfor %}
+      <div class="mt-5"></div>
+    </div>
+    {% endblock %}
+  </div>
+</div>

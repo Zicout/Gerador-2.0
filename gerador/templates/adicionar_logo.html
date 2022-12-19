@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+Adicionar Logo | Gerador
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row col-sm-auto">
+      <div class="col">
+        <form method="POST" action="" class="border p-5 mt-3 container-edit-primary" enctype="multipart/form-data">
+          {{ form.csrf_token }}
+          <legend>Adicionar Logo</legend>
+          <fieldset> 
+                <div class="form-group mt-2">
+                    {{ form.foto_upload.label }}
+                    <div class="input-group mb-3">                        
+                        {{ form.foto_upload(class="form-control") }}
+                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                    </div>
+
+                    {% if form.foto_upload.errors %}
+
+                        {% for erro in form.foto_upload.errors %}
+                            <span class="text-danger">{{ erro }}</span><br>
+                        {% endfor %}
+
+                    {% endif %}
+                </div>
+                <div class="form-group mt-2">
+                  {{ form.logo_upload.label }}
+                  <div class="input-group mb-3">                        
+                      {{ form.logo_upload(class="form-control") }}
+                      <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                  </div>
+
+                  {% if form.logo_upload.errors %}
+
+                      {% for erro in form.logo_upload.errors %}
+                          <span class="text-danger">{{ erro }}</span><br>
+                      {% endfor %}
+
+                  {% endif %}
+              </div>
+          </fieldset>
+          {{form.submit_adicionar_logo (class="btn btn-primary mt-2") }}
+        </form>
+
+        {% if imagem %}
+            {{ imagem }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
